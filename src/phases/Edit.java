@@ -71,7 +71,8 @@ public class Edit implements Phase {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(editing){we.keyPressed(e);	return;}
+		if(editing){we.keyPressed(e);	
+		System.out.println("[Testing] Edit hand keyPressed over to WorkoutEditor");return;}
 		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_UP:		workouts.elementAt(selected).setSelected(false);

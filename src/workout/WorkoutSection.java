@@ -10,4 +10,7 @@ public interface WorkoutSection{
 	public void editPaint(Graphics g, int a, int mode , Color colorColor);
 	public void setSelected(boolean a);
 	public int getType(); //0=undefined/error ; 1=timer ; 2=amount ; 3=done;
+	public void addValue(int a);	//Seconds or Amount
+	public String getTitle();
+	public void setTitle(String a);
 }

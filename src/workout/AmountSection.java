@@ -72,5 +72,21 @@ public class AmountSection implements WorkoutSection, Serializable{
 	public int getType() {
 		return 2;
 	}
+
+	@Override
+	public void addValue(int a) {
+		amount = amount + a;
+		if(amount < 0 ) amount = 0;
+	}
+
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public void setTitle(String a) {
+		title = a;
+	}
 	
 }

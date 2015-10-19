@@ -74,18 +74,33 @@ public class WorkoutEditor implements Phase {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		
+		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_ESCAPE:		if(mode==0)((Edit) ph.phases[3]).stopEditing();	else mode = 0;
 		break;
 		case KeyEvent.VK_UP:			if(mode==0)selectSection(selected-1);
-										else if(mode == 1) {sections.elementAt(selected).setMinutes = sections.elementAt(selected).minutes + 1;}
-										//else if(mode == 2) 
-										//else if(mode == 3) 
+										else if(mode == 1) sections.elementAt(selected).addValue(60);
+										else if(mode == 2 || mode == 3) sections.elementAt(selected).addValue(1);
 		break;
 		case KeyEvent.VK_DOWN:			if(mode==0)selectSection(selected+1);
+										else if(mode == 1) sections.elementAt(selected).addValue(-60);
+										else if(mode == 2 || mode == 3) sections.elementAt(selected).addValue(-1);
 		break;
 		case KeyEvent.VK_ENTER:			enter();
+		break;
+		case KeyEvent.VK_BACK_SPACE:	if(mode==4) backspace(sections.elementAt(selected).getTitle());
 		}
+		
+		if(mode ==4 && Character.isAlphabetic(e.getKeyChar()) ){
+			sections.elementAt(selected).setTitle(sections.elementAt(selected).getTitle()+e.getKeyChar());
+			System.out.println("[Testing] Adding " + e.getKeyChar());
+		}
+	}
+
+	private void backspace(String a) {
+		sections.elementAt(selected).setTitle(a.substring(0, a.length()-1));
 	}
 
 	private void enter() {

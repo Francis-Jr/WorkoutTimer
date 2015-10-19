@@ -20,17 +20,12 @@ public class TimerSection implements WorkoutSection, Serializable {
 	private boolean selected;
 	public int type = 1;
 	
-	public long setMinutes = minutes, setSeconds = seconds;
-	public String setTitle = "";//for changing duration in WorkoutEditor;
-	
 	public TimerSection(String a, long b, Workout c){ //b in nanoseconds
 		title = a;
 		duration = b+990000000L;
 		remains = duration;
 		minutes = (long) Math.floor(remains/(60e9));
 		seconds = (long) Math.floor(remains/(1e9))%60;
-		setMinutes = minutes;
-		setSeconds = seconds;
 		wo = c;
 	}
 	
@@ -104,9 +99,24 @@ public class TimerSection implements WorkoutSection, Serializable {
 	public int getType() {
 		return 1;
 	}
+
+	@Override
+	public void addValue(int a) {
+		duration = duration + a*(long)1e9;
+		if(duration < 0) duration = 0;
+		remains = duration;
+		minutes = (long) Math.floor(remains/(60e9));
+		seconds = (long) Math.floor(remains/(1e9))%60;
+		
+	}
 	
-	public void applySettings(){//for use in WorkoutEditor
-		duration = (setMinutes*60 + setSeconds)* (long)1e9 ;
-		title = setTitle; 
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public void setTitle(String a) {
+		title = a;
 	}
 }

@@ -58,4 +58,20 @@ public class DoneSection implements WorkoutSection, Serializable {
 		return 3;
 	}
 
+	@Override
+	public void addValue(int a) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public String getTitle() {
+		return "Done";
+	}
+
+	@Override
+	public void setTitle(String a) {
+		
+	}
+
 }
