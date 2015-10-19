@@ -91,6 +91,7 @@ public class WorkoutEditor implements Phase {
 		case KeyEvent.VK_ENTER:			enter();
 		break;
 		case KeyEvent.VK_BACK_SPACE:	if(mode==4) backspace(sections.elementAt(selected).getTitle());
+		break;
 		}
 		
 		if(mode ==4 && Character.isAlphabetic(e.getKeyChar()) ){
