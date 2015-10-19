@@ -12,9 +12,6 @@ public class WorkoutManager implements Serializable{
 	private Vector<String> names;	
 	
 	public WorkoutManager(){
-		WorkoutSerializer ws = new WorkoutSerializer();
-		names = ws.readWorkoutManager().names;
-		ws.writeWorkoutManager(this);
 	}
 	
 	public Vector<Workout> getWorkouts(){

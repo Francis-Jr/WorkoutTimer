@@ -10,6 +10,8 @@ import java.util.Vector;
 import main.Win;
 import workout.Workout;
 import workout.WorkoutSection;
+import workout.TimerSection;
+import workout.AmountSection;
 
 public class WorkoutEditor implements Phase {
 
@@ -76,6 +78,9 @@ public class WorkoutEditor implements Phase {
 		case KeyEvent.VK_ESCAPE:		if(mode==0)((Edit) ph.phases[3]).stopEditing();	else mode = 0;
 		break;
 		case KeyEvent.VK_UP:			if(mode==0)selectSection(selected-1);
+										else if(mode == 1) {sections.elementAt(selected).setMinutes = sections.elementAt(selected).minutes + 1;}
+										//else if(mode == 2) 
+										//else if(mode == 3) 
 		break;
 		case KeyEvent.VK_DOWN:			if(mode==0)selectSection(selected+1);
 		break;
