@@ -2,6 +2,7 @@ package workout;
 
 import java.awt.Graphics;
 import java.io.Serializable;
+import java.util.Vector;
 
 import main.Win;
 import phases.WorkoutPlayer;
@@ -12,7 +13,7 @@ public class Workout implements Serializable{
 	 * 	Oct 9 15
 	 */
 	private static final long serialVersionUID = 6935213543794084854L;
-	public WorkoutSection[] sections;
+	public Vector<WorkoutSection> sections = new Vector<WorkoutSection>(2);
 	private int currentSection = 0;
 	
 	private String title = "title";
@@ -20,14 +21,16 @@ public class Workout implements Serializable{
 	
 	private WorkoutPlayer wp = null;
 	
-	public Workout(String a, WorkoutSection[] b){
+	public Workout(String a, Vector<WorkoutSection> b){
 		title = a;
 		sections = b;
 	}
 	
-	public Workout(String a){
+	public Workout(String a){ //for testwise creation only
 		title = a;
-		initSections(); 
+		sections.add(new TimerSection("TimerSection 1",(long) 2e9 , this));
+		sections.add(new AmountSection("Amount Section" , 20 , this));
+		sections.add(new TimerSection("TimerSection 2",(long) 3e9 , this));
 	}
 	
 	public void setWorkoutPlayer(WorkoutPlayer a){
@@ -37,30 +40,25 @@ public class Workout implements Serializable{
 	/**
 	 * for testing / testwise creation only
 	 */
-	private void initSections(){ 
-		sections = new WorkoutSection[1];
-		sections[0] = new DoneSection(this);
-	}
 
 	public void paint(Graphics g) {
-		sections[currentSection].paint(g);
+		sections.elementAt(currentSection).paint(g);
 	}
 
 	public void calculate(long delta) {
-		sections[currentSection].calculate(delta);
+		sections.elementAt(currentSection).calculate(delta);
 	}	
 	
 	protected void nextSection(){
 		currentSection = currentSection + 1;
-		if (currentSection >= sections.length)	currentSection = -1;
+		if (currentSection >= sections.size())	currentSection = -1;
 	}
 
 	public void space() {
-		sections[currentSection].togglePaused();
+		sections.elementAt(currentSection).togglePaused();
 	}
 
 	public void quitWorkout() {
-		initSections();
 		currentSection = 0;
 		wp.quitWorkout();
 	}
@@ -80,10 +78,10 @@ public class Workout implements Serializable{
 	}
 	
 	public void createNewSection(){
-		WorkoutSection[] tmp = new WorkoutSection[sections.length + 1];
-		for(int n= 0 ; n< sections.length ; n++){
-			tmp[n] = sections[n];
-		}
-		tmp[sections.length] = new TimerSection("new Section", 10000000000L, this);
+		sections.addElement(new TimerSection("new Section",(long)1e9,this));
+	}
+	
+	public void setSections(Vector<WorkoutSection> a){
+		sections = a;
 	}
 }

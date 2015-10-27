@@ -74,4 +74,14 @@ public class DoneSection implements WorkoutSection, Serializable {
 		
 	}
 
+	@Override
+	public int getAmount() {
+		return -1;
+	}
+
+	@Override
+	public long getDuration() {
+		return -1;
+	}
+
 }

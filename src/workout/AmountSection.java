@@ -16,6 +16,7 @@ public class AmountSection implements WorkoutSection, Serializable{
 	private String title;
 	private int amount;
 	private boolean selected;
+	public long wouldBeDuration = (long) 1e9;
 	
 	public AmountSection(String a, int b, Workout c){
 		title = a;
@@ -87,6 +88,16 @@ public class AmountSection implements WorkoutSection, Serializable{
 	@Override
 	public void setTitle(String a) {
 		title = a;
+	}
+
+	@Override
+	public int getAmount() {
+		return amount;
+	}
+
+	@Override
+	public long getDuration() {
+		return wouldBeDuration;
 	}
 	
 }

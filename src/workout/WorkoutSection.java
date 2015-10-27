@@ -13,4 +13,6 @@ public interface WorkoutSection{
 	public void addValue(int a);	//Seconds or Amount
 	public String getTitle();
 	public void setTitle(String a);
+	public int getAmount();
+	public long getDuration();
 }

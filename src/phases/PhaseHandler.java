@@ -37,7 +37,6 @@ public class PhaseHandler implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		phases[currentPhase].keyPressed(e);
 	}
 
 	@Override

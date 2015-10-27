@@ -2,7 +2,17 @@ package workout;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import main.Win;
 
@@ -19,6 +29,7 @@ public class TimerSection implements WorkoutSection, Serializable {
 	private boolean paused = true;
 	private boolean selected;
 	public int type = 1;
+	public int wouldBeAmount = 20;
 	
 	public TimerSection(String a, long b, Workout c){ //b in nanoseconds
 		title = a;
@@ -47,7 +58,10 @@ public class TimerSection implements WorkoutSection, Serializable {
 			remains = remains - delta;
 			minutes = (long) Math.floor(remains/(60e9));
 			seconds = (long) Math.floor(remains/(1e9))%60;
-			if(remains <=0)	wo.nextSection();
+			if(remains <=0)	{
+				playSound();
+				wo.nextSection();
+			}
 		}
 		
 	}
@@ -118,5 +132,35 @@ public class TimerSection implements WorkoutSection, Serializable {
 	@Override
 	public void setTitle(String a) {
 		title = a;
+	}
+	
+	public void playSound(){
+		try {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(
+            	new File(WorkoutSerializer.path + "beep-02.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audio);
+            clip.start();
+        }
+        
+        catch(UnsupportedAudioFileException uae) {
+            System.out.println(uae);
+        }
+        catch(IOException ioe) {
+            System.out.println(ioe);
+        }
+        catch(LineUnavailableException lua) {
+            System.out.println(lua);
+        }
+	}
+
+	@Override
+	public int getAmount() {
+		return wouldBeAmount;
+	}
+
+	@Override
+	public long getDuration() {
+		return duration;
 	}
 }

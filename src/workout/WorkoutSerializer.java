@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 public class WorkoutSerializer {
 
 	
-	private String path = "C:/Users/Jakob/Documents/GitHub/WorkoutTimer/Save/";
+	protected static String path = "C:/Users/Jakob/Documents/GitHub/WorkoutTimer/Save/";
 	
 	public void writeWorkout(Workout a){
 		try{   
