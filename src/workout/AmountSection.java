@@ -99,5 +99,20 @@ public class AmountSection implements WorkoutSection, Serializable{
 	public long getDuration() {
 		return wouldBeDuration;
 	}
+
+	@Override
+	public void setAmount(int a) {
+		amount = a;
+	}
+
+	@Override
+	public void setDuration(long a) {
+		wouldBeDuration = a;
+	}
+
+	@Override
+	public void setWorkout(Workout a) {
+		wo = a;
+	}
 	
 }

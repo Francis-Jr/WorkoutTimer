@@ -51,7 +51,9 @@ public class Workout implements Serializable{
 	
 	protected void nextSection(){
 		currentSection = currentSection + 1;
-		if (currentSection >= sections.size())	currentSection = -1;
+		if (currentSection >= 
+				sections.size()
+				)	currentSection = -1;
 	}
 
 	public void space() {

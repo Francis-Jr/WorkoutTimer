@@ -27,6 +27,7 @@ public class Edit implements Phase {
 		workouts = wm.getWorkouts();
 		workouts.add(new Workout("Create new Workout"));
 		workouts.firstElement().setSelected(true);
+		System.out.println("[DEBUG] Edit <init> workouts has " + workouts.size() + " elements");
 	}
 	
 	@Override
@@ -94,6 +95,7 @@ public class Edit implements Phase {
 	}
 	
 	public void editWorkout(int a){
+		System.out.println("[DEBUG] Edit editWorkout() , a has " + workouts.elementAt(a).sections.size() + " sections");
 		we.setWorkout(workouts.elementAt(a));
 		editing = true;
 	}

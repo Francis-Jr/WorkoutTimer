@@ -1,4 +1,5 @@
 package main;
+import java.util.Enumeration;
 import java.util.Vector;
 
 import workout.AmountSection;
@@ -29,12 +30,21 @@ public class Main {
 		sections.add(new AmountSection("Amount Section" , 20 , wo1));
 		sections.add(new TimerSection("TimerSection 2",(long) 3e9 , wo1));
 		wo1.setSections(sections);
+		Enumeration<WorkoutSection> wsnum = wo1.sections.elements();
+		while(wsnum.hasMoreElements()){
+			wsnum.nextElement().setWorkout(wo1);
+		}
 		
 		sections = new Vector<WorkoutSection>(2);
 		sections.add(new TimerSection("TimerSection 1",(long) 2e9 , wo2));
 		sections.add(new AmountSection("Amount Section" , 20 , wo2));
 		sections.add(new TimerSection("TimerSection 2",(long) 3e9 , wo2));
 		wo1.setSections(sections);
+		Enumeration<WorkoutSection> wsnum2 = wo2.sections.elements();
+		while(wsnum2.hasMoreElements()){
+			wsnum2.nextElement().setWorkout(wo2);
+		}
+		
 		
 		ws.writeWorkout(wo1);
 		ws.writeWorkout(wo2);

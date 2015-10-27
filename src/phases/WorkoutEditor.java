@@ -21,7 +21,6 @@ public class WorkoutEditor implements Phase {
 	
 	private PhaseHandler ph;
 	private Workout wo = null;
-	//private Vector<WorkoutSection> sections = new Vector<WorkoutSection>(2); TODO removing and replacing by wo.sections
 	private int selected = 0;
 	private int mode = 0;	//0=select section ; 1=changeMins ; 2=changeSeconds ; 3 = changeAmount ; 4=changeTitle
 	private long colorCounter = 0;
@@ -102,12 +101,17 @@ public class WorkoutEditor implements Phase {
 										}
 		break;
 		case KeyEvent.VK_TAB:			if(mode == 0){
-											if(wo.sections.elementAt(selected).getType() == 1)
+											if(wo.sections.elementAt(selected).getType() == 1){
+												long tmp = wo.sections.elementAt(selected).getDuration();
 												wo.sections.set(selected, new AmountSection(wo.sections.elementAt(selected).getTitle(),
 													wo.sections.elementAt(selected).getAmount(),wo));
+												wo.sections.elementAt(selected).setDuration(tmp);
+											}
 											else if(wo.sections.elementAt(selected).getType() == 2){
+												int tmp = wo.sections.elementAt(selected).getAmount();
 												wo.sections.set(selected, new TimerSection(wo.sections.elementAt(selected).getTitle(),
 													wo.sections.elementAt(selected).getDuration(),wo));
+												wo.sections.elementAt(selected).setAmount(tmp);
 											}
 										}
 		break;

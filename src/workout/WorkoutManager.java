@@ -21,8 +21,10 @@ public class WorkoutManager implements Serializable{
 			while(snum.hasMoreElements()){
 				tmp.add(ws.readWorkout(snum.nextElement()));
 			}
-			
+			System.out.println("[DEBUG] WorkoutManager gets " + tmp.size() + "Workouts" );
+			System.out.println("[DEBUG] WorkoutManager 'getWorkouts()' gets the first Workout with  " + tmp.firstElement().sections.size() + " Sections");
 			return tmp;
+			
 		}
 		
 	

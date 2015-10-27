@@ -63,7 +63,6 @@ public class TimerSection implements WorkoutSection, Serializable {
 				wo.nextSection();
 			}
 		}
-		
 	}
 	
 	public void pause(){
@@ -162,5 +161,24 @@ public class TimerSection implements WorkoutSection, Serializable {
 	@Override
 	public long getDuration() {
 		return duration;
+	}
+
+	@Override
+	public void setAmount(int a) {
+		wouldBeAmount = a;
+	}
+
+	@Override
+	public void setDuration(long a) {
+		duration = a;
+		if(duration < 0) duration = 0;
+		remains = duration;
+		minutes = (long) Math.floor(remains/(60e9));
+		seconds = (long) Math.floor(remains/(1e9))%60;
+	}
+
+	@Override
+	public void setWorkout(Workout a) {
+		wo = a;
 	}
 }

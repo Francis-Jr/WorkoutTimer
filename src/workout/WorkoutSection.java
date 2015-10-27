@@ -15,4 +15,7 @@ public interface WorkoutSection{
 	public void setTitle(String a);
 	public int getAmount();
 	public long getDuration();
+	public void setAmount(int a);
+	public void setDuration(long a);
+	public void setWorkout(Workout a);
 }
