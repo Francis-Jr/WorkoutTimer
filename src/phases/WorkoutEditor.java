@@ -182,11 +182,12 @@ public class WorkoutEditor implements Phase {
 	public void setWorkout(Workout a) {
 		wo = a;
 		selected = 0;
-		wo.sections = new Vector<WorkoutSection>(2);
+		/*wo.sections = new Vector<WorkoutSection>(2);
 		for(WorkoutSection s : a.sections){
 			s.setSelected(false);
 			wo.sections.add(s);
-		}
+		}*/ //Taken out for debugging
+		//TODO make sure all sections are unselected.
 		wo.sections.firstElement().setSelected(true);
 	}
 }

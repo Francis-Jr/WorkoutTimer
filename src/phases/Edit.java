@@ -95,7 +95,8 @@ public class Edit implements Phase {
 	}
 	
 	public void editWorkout(int a){
-		System.out.println("[DEBUG] Edit editWorkout() , a has " + workouts.elementAt(a).sections.size() + " sections");
+		System.out.println("[DEBUG] Edit editWorkout() , a has " + workouts.elementAt(a).sections.size() + " sections, title is " + workouts.elementAt(a).getTitle() );
+		workouts.elementAt(a).sections.firstElement().getTitle();
 		we.setWorkout(workouts.elementAt(a));
 		editing = true;
 	}

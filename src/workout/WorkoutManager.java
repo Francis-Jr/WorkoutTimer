@@ -9,9 +9,10 @@ public class WorkoutManager implements Serializable{
 	 * Oct 9 15
 	 */
 	private static final long serialVersionUID = 6701580262342495964L;
-	private Vector<String> names;	
+	public Vector<String> names;	
 	
 	public WorkoutManager(){
+		names = new Vector<String>(2);
 	}
 	
 	public Vector<Workout> getWorkouts(){

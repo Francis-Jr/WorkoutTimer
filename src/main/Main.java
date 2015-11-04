@@ -5,6 +5,7 @@ import java.util.Vector;
 import workout.AmountSection;
 import workout.TimerSection;
 import workout.Workout;
+import workout.WorkoutManager;
 import workout.WorkoutSerializer;
 import workout.WorkoutSection;
 
@@ -48,5 +49,14 @@ public class Main {
 		
 		ws.writeWorkout(wo1);
 		ws.writeWorkout(wo2);
+		
+		WorkoutManager wm = new WorkoutManager();
+		wm.names.add(wo1.getTitle());
+		wm.names.add(wo2.getTitle());
+		
+		ws.writeWorkoutManager(wm);
+		
+		System.out.println("Wrote Testworkouts. Done.");
+		System.exit(0);
 	}
 }
